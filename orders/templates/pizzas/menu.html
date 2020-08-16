@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <title>
+        Pizza Menu
+    </title>
+    <body>
+        <ul>
+        {% for pizza in regular_pizza %}
+            <li>
+                {{pizza.name}} - {{pizza.small_price}} - {{pizza.large_price}}
+            </li>
+        {% endfor %}
+        </ul>
+    </body>
+</html>
