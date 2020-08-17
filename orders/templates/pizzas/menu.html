@@ -11,5 +11,54 @@
             </li>
         {% endfor %}
         </ul>
+
+        <ul>
+            {% for pizza in sicilian_pizza %}
+                <li>
+                    {{pizza.name}} - {{pizza.small_price}} - {{pizza.large_price}}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <ul>
+            {% for topping in toppings %}
+                <li>
+                    {{topping.name}}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <ul>
+            {% for sub in subs %}
+                <li>
+                    {{sub.name}} - {{sub.small_price}} - {{sub.large_price}}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <ul>
+            {% for salad in salads %}
+                <li>
+                    {{salad.name}} - {{salad.price}}
+                </li>
+            {% endfor %}            
+        </ul>
+
+        <ul>
+            {% for dinner_platter in dinner_platters %}
+                <li>
+                    {{dinner_platter.name}} - {{dinner_platter.small_price}} - {{dinner_platter.large_price}}
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <ul>
+            {% for pas in pasta %}
+                <li>
+                    {{pas.name}} - {{pas.price}}
+                </li>
+            {% endfor %}
+        </ul>
+      
     </body>
 </html>
