@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'pizzas/index.css' %}"/>
+        <script>       
+        function toggle_display(){
+          var reg_form = document.querySelector('.register-form');
+        
+          var log_form = document.querySelector('.login-form');
+          if(getComputedStyle(reg_form).display === "none"){          
+            reg_form.style.display = "block";            
+          }
+          else{
+            reg_form.style.display = "none";
+          }
+
+          if(getComputedStyle(log_form).display === "none"){
+            log_form.style.display = "block";
+          }
+          else{
+            log_form.style.display = "none";
+          }
+        }                
+
+        document.addEventListener('DOMContentLoaded',()=>{
+          reg_form = document.querySelector('.register-form');
+
+        });
+        </script>
+
+    </head>
+    <body>
+        <div class="login-page">
+            <div class="form">
+              <form class="register-form" action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="username" name="username"/>
+                <input type="password" placeholder="password" name="password"/>
+                <input type="text" placeholder="email address" name="email"/>
+                <button>create</button>
+                <p class="message">Already registered? <a onclick="toggle_display()" href="#">Sign In</a></p>
+              </form>
+              <form class="login-form" action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="username" name="username"/>
+                <input type="password" placeholder="password" name="password"/>
+                <button>login</button>
+                <p class="message">Not registered? <a onclick="toggle_display()" href="#">Create an account</a></p>
+              </form>
+            </div>
+        </div>
+    </body>
+</html>
+

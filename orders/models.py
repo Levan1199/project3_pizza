@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class RegularPizza(models.Model):
@@ -53,3 +54,4 @@ class DinnerPlatters(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.small_price} - {self.large_price}"
+

@@ -4,6 +4,7 @@
         Pizza Menu
     </title>
     <body>
+        {% csrf_token %}
         <ul>
         {% for pizza in regular_pizza %}
             <li>
@@ -36,6 +37,17 @@
             {% endfor %}
         </ul>
 
+        
+
+
+        <ul>
+            {% for pas in pasta %}
+                <li>
+                    {{pas.name}} - {{pas.price}}
+                </li>
+            {% endfor %}
+        </ul>
+
         <ul>
             {% for salad in salads %}
                 <li>
@@ -43,7 +55,7 @@
                 </li>
             {% endfor %}            
         </ul>
-
+        
         <ul>
             {% for dinner_platter in dinner_platters %}
                 <li>
@@ -52,13 +64,7 @@
             {% endfor %}
         </ul>
         
-        <ul>
-            {% for pas in pasta %}
-                <li>
-                    {{pas.name}} - {{pas.price}}
-                </li>
-            {% endfor %}
-        </ul>
+      
       
     </body>
 </html>
