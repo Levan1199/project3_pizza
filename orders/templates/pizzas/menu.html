@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <title>
-        Pizza Menu
-    </title>
+    <head>
+        <!-- {% load static %}
+        <script src="{% static 'pizzas/menu.js' %}"></script>    -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        
+        <title>Pizza Menu</title>
+        
+    </head>
+  
     <body>
-        {% csrf_token %}
-        <ul>
+        
+        <a href="{% url 'logout' %}">Logout</a>
+        
+        <script>
+            // var data = JSON.parse("{{data|safe}}");
+            var data = {{data|safe}};
+            console.log(data);
+            
+            for (x in data){
+                console.log(JSON.parse(data[x])[0]["fields"].name);
+
+                // console.log((x[0]));
+                // console.log(x[0]["fields"].ATTRIBUTE);
+            }
+            
+        </script>
+        <!-- {% csrf_token %}        
+        <ul id="regular_pizza">
         {% for pizza in regular_pizza %}
             <li>
                 {{pizza.name}} - {{pizza.small_price}} - {{pizza.large_price}}
             </li>
+            <button type="button" class="reg_piz">wwwwww</button>
         {% endfor %}
         </ul>
 
-        <ul>
+        <ul id="sicilian_pizza">
             {% for pizza in sicilian_pizza %}
                 <li>
                     {{pizza.name}} - {{pizza.small_price}} - {{pizza.large_price}}
@@ -21,7 +44,7 @@
             {% endfor %}
         </ul>
 
-        <ul>
+        <ul id="toppings">
             {% for topping in toppings %}
                 <li>
                     {{topping.name}}
@@ -29,18 +52,15 @@
             {% endfor %}
         </ul>
 
-        <ul>
+        <ul id="subs">
             {% for sub in subs %}
                 <li>
                     {{sub.name}} - {{sub.small_price}} - {{sub.large_price}}
                 </li>
             {% endfor %}
-        </ul>
+        </ul>    
 
-        
-
-
-        <ul>
+        <ul id="pasta">
             {% for pas in pasta %}
                 <li>
                     {{pas.name}} - {{pas.price}}
@@ -48,7 +68,7 @@
             {% endfor %}
         </ul>
 
-        <ul>
+        <ul id="salads">
             {% for salad in salads %}
                 <li>
                     {{salad.name}} - {{salad.price}}
@@ -56,15 +76,13 @@
             {% endfor %}            
         </ul>
         
-        <ul>
+        <ul id="dinner_platters">
             {% for dinner_platter in dinner_platters %}
                 <li>
                     {{dinner_platter.name}} - {{dinner_platter.small_price}} - {{dinner_platter.large_price}}
                 </li>
             {% endfor %}
-        </ul>
-        
-      
+        </ul>           -->
       
     </body>
 </html>

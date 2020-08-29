@@ -55,3 +55,6 @@ class DinnerPlatters(models.Model):
     def __str__(self):
         return f"{self.name} - {self.small_price} - {self.large_price}"
 
+
+    
+
