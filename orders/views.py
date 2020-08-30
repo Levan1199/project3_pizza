@@ -12,20 +12,35 @@ from django.core import serializers
 def index(request):
     return render(request, "pizzas/index.html")
 
+# def menu(request):
+#     if not request.user.is_authenticated:
+#         return HttpResponseRedirect(reverse("index"))
+#     context = {
+#         "regular_pizza": serializers.serialize('json', RegularPizza.objects.all()),
+#         "sicilian_pizza": serializers.serialize('json', SicilianPizza.objects.all()),
+#         "toppings": serializers.serialize('json', Toppings.objects.all()),
+#         "subs": serializers.serialize('json', Subs.objects.all()),
+#         "salads": serializers.serialize('json', Salads.objects.all()),
+#         "pasta": serializers.serialize('json', Pasta.objects.all()),
+#         "dinner_platters": serializers.serialize('json', DinnerPlatters.objects.all()),
+#     }          
+#     # contextJSON = dumps(context)
+#     return render(request, 'pizzas/menu.html', {'data':contextJSON}) 
+
 def menu(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("index"))
     context = {
-        "regular_pizza": serializers.serialize('json', RegularPizza.objects.all()),
-        "sicilian_pizza": serializers.serialize('json', SicilianPizza.objects.all()),
-        "toppings": serializers.serialize('json', Toppings.objects.all()),
-        "subs": serializers.serialize('json', Subs.objects.all()),
-        "salads": serializers.serialize('json', Salads.objects.all()),
-        "pasta": serializers.serialize('json', Pasta.objects.all()),
-        "dinner_platters": serializers.serialize('json', DinnerPlatters.objects.all()),
+        "regular_pizza": RegularPizza.objects.all(),
+        "sicilian_pizza": SicilianPizza.objects.all(),
+        "toppings": Toppings.objects.all(),
+        "subs": Subs.objects.all(),
+        "salads": Salads.objects.all(),
+        "pasta": Pasta.objects.all(),
+        "dinner_platters": DinnerPlatters.objects.all(),
     }          
-    contextJSON = dumps(context)
-    return render(request, 'pizzas/menu.html', {'data':contextJSON}) 
+    
+    return render(request, 'pizzas/menu.html', context)
 
 def login_view(request):
     print('inside reg log')

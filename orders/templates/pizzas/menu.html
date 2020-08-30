@@ -6,33 +6,31 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         
         <title>Pizza Menu</title>
-        
+        <style>
+            .dish{
+                display: flex;
+                flex-direction: row;
+            }
+        </style>
     </head>
   
     <body>
         
         <a href="{% url 'logout' %}">Logout</a>
         
-        <script>
-            // var data = JSON.parse("{{data|safe}}");
-            var data = {{data|safe}};
-            console.log(data);
-            
-            for (x in data){
-                console.log(JSON.parse(data[x])[0]["fields"].name);
-
-                // console.log((x[0]));
-                // console.log(x[0]["fields"].ATTRIBUTE);
-            }
-            
-        </script>
-        <!-- {% csrf_token %}        
+        {% csrf_token %}        
         <ul id="regular_pizza">
         {% for pizza in regular_pizza %}
-            <li>
-                {{pizza.name}} - {{pizza.small_price}} - {{pizza.large_price}}
-            </li>
-            <button type="button" class="reg_piz">wwwwww</button>
+            <div class="dish">
+                <li>
+                    {{pizza.name}} - {{pizza.small_price}} - {{pizza.large_price}}
+                </li>
+                <select name="selection" id="selection" class="selection">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+                <button class="order">Order</button>
+            </div>
         {% endfor %}
         </ul>
 
@@ -82,7 +80,7 @@
                     {{dinner_platter.name}} - {{dinner_platter.small_price}} - {{dinner_platter.large_price}}
                 </li>
             {% endfor %}
-        </ul>           -->
+        </ul>          
       
     </body>
 </html>
