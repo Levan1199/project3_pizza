@@ -12,6 +12,7 @@
   
     <body>
         
+<<<<<<< HEAD
         <a href="{% url 'logout' %}">Logout</a>        
        
         <ul id="regular_pizza">
@@ -41,6 +42,23 @@
                 <input type="submit" value="Order">
             </form>
         </div>
+=======
+        <a href="{% url 'logout' %}">Logout</a>
+        
+        {% csrf_token %}        
+        <ul id="regular_pizza">
+        {% for pizza in regular_pizza %}
+            <div class="dish">
+                <li>
+                    {{pizza.name}} - {{pizza.small_price}} - {{pizza.large_price}}
+                </li>
+                <select name="selection" id="selection" class="selection">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+                <button class="order">Order</button>
+            </div>
+>>>>>>> a100666f26cf2d6be4981ac9c27e80c2ccff7716
         {% endfor %}
         </ul>
 
@@ -113,6 +131,7 @@
                 </li>
             {% endfor %}
         </ul>          
+<<<<<<< HEAD
         
         <!-- <script>
             function make_order(){
@@ -123,5 +142,8 @@
                 e.onclick = make_order();
             });
         </script> -->
+=======
+      
+>>>>>>> a100666f26cf2d6be4981ac9c27e80c2ccff7716
     </body>
 </html> 

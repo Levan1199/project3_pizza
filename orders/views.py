@@ -24,10 +24,16 @@ def index(request):
 #         "pasta": serializers.serialize('json', Pasta.objects.all()),
 #         "dinner_platters": serializers.serialize('json', DinnerPlatters.objects.all()),
 #     }          
+<<<<<<< HEAD
 #     contextJSON = dumps(context)
 #     return render(request, 'pizzas/menu.html', {'data':contextJSON}) 
 
 
+=======
+#     # contextJSON = dumps(context)
+#     return render(request, 'pizzas/menu.html', {'data':contextJSON}) 
+
+>>>>>>> a100666f26cf2d6be4981ac9c27e80c2ccff7716
 def menu(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("index"))
@@ -39,9 +45,15 @@ def menu(request):
         "salads": Salads.objects.all(),
         "pasta": Pasta.objects.all(),
         "dinner_platters": DinnerPlatters.objects.all(),
+<<<<<<< HEAD
     }              
     return render(request, 'pizzas/menu.html', context)
 
+=======
+    }          
+    
+    return render(request, 'pizzas/menu.html', context)
+>>>>>>> a100666f26cf2d6be4981ac9c27e80c2ccff7716
 
 def login_view(request):
     print('inside reg log')
