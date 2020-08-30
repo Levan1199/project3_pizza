@@ -12,20 +12,36 @@ from django.core import serializers
 def index(request):
     return render(request, "pizzas/index.html")
 
+# def menu(request):
+#     if not request.user.is_authenticated:
+#         return HttpResponseRedirect(reverse("index"))
+#     context = {
+#         "regular_pizza": serializers.serialize('json', RegularPizza.objects.all()),
+#         "sicilian_pizza": serializers.serialize('json', SicilianPizza.objects.all()),
+#         "toppings": serializers.serialize('json', Toppings.objects.all()),
+#         "subs": serializers.serialize('json', Subs.objects.all()),
+#         "salads": serializers.serialize('json', Salads.objects.all()),
+#         "pasta": serializers.serialize('json', Pasta.objects.all()),
+#         "dinner_platters": serializers.serialize('json', DinnerPlatters.objects.all()),
+#     }          
+#     contextJSON = dumps(context)
+#     return render(request, 'pizzas/menu.html', {'data':contextJSON}) 
+
+
 def menu(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("index"))
     context = {
-        "regular_pizza": serializers.serialize('json', RegularPizza.objects.all()),
-        "sicilian_pizza": serializers.serialize('json', SicilianPizza.objects.all()),
-        "toppings": serializers.serialize('json', Toppings.objects.all()),
-        "subs": serializers.serialize('json', Subs.objects.all()),
-        "salads": serializers.serialize('json', Salads.objects.all()),
-        "pasta": serializers.serialize('json', Pasta.objects.all()),
-        "dinner_platters": serializers.serialize('json', DinnerPlatters.objects.all()),
-    }          
-    contextJSON = dumps(context)
-    return render(request, 'pizzas/menu.html', {'data':contextJSON}) 
+        "regular_pizza": RegularPizza.objects.all(),
+        "sicilian_pizza": SicilianPizza.objects.all(),
+        "toppings": Toppings.objects.all(),
+        "subs": Subs.objects.all(),
+        "salads": Salads.objects.all(),
+        "pasta": Pasta.objects.all(),
+        "dinner_platters": DinnerPlatters.objects.all(),
+    }              
+    return render(request, 'pizzas/menu.html', context)
+
 
 def login_view(request):
     print('inside reg log')
@@ -55,3 +71,26 @@ def logout_view(request):
     print('inside out log')
     logout(request)
     return HttpResponseRedirect(reverse("index"))
+
+def order(request,pizza_type,pizza_name):
+    quantity = int(request.POST["quantity"])
+    size = str(request.POST["size"])    
+    if pizza_type == "RegularPizza":
+        pizza = RegularPizza.objects.get(name=pizza_name)
+    if pizza_type == "SicilianPizza":
+        pizza = SicilianPizza.objects.get(name=pizza_name)
+    if pizza_type == "Toppings":
+        pizza = Toppings.objects.get(name=pizza_name)
+    if pizza_type == "Subs":
+        pizza = Subs.objects.get(name=pizza_name)
+    if pizza_type == "Salads":
+        pizza = Salads.objects.get(name=pizza_name)
+    if pizza_type == "Pasta":
+        pizza = Pasta.objects.get(name=pizza_name)
+    if pizza_type == "DinnerPlatters":
+        pizza = DinnerPlatters.objects.get(name=pizza_name)
+
+    print(quantity, size, pizza_name)
+    print(pizza)
+
+    return HttpResponseRedirect(reverse("menu"))
