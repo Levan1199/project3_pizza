@@ -24,16 +24,10 @@ def index(request):
 #         "pasta": serializers.serialize('json', Pasta.objects.all()),
 #         "dinner_platters": serializers.serialize('json', DinnerPlatters.objects.all()),
 #     }          
-<<<<<<< HEAD
 #     contextJSON = dumps(context)
 #     return render(request, 'pizzas/menu.html', {'data':contextJSON}) 
 
 
-=======
-#     # contextJSON = dumps(context)
-#     return render(request, 'pizzas/menu.html', {'data':contextJSON}) 
-
->>>>>>> a100666f26cf2d6be4981ac9c27e80c2ccff7716
 def menu(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("index"))
@@ -45,15 +39,9 @@ def menu(request):
         "salads": Salads.objects.all(),
         "pasta": Pasta.objects.all(),
         "dinner_platters": DinnerPlatters.objects.all(),
-<<<<<<< HEAD
     }              
     return render(request, 'pizzas/menu.html', context)
 
-=======
-    }          
-    
-    return render(request, 'pizzas/menu.html', context)
->>>>>>> a100666f26cf2d6be4981ac9c27e80c2ccff7716
 
 def login_view(request):
     print('inside reg log')
@@ -89,17 +77,17 @@ def order(request,pizza_type,pizza_name):
     size = str(request.POST["size"])    
     if pizza_type == "RegularPizza":
         pizza = RegularPizza.objects.get(name=pizza_name)
-    if pizza_type == "SicilianPizza":
+    elif pizza_type == "SicilianPizza":
         pizza = SicilianPizza.objects.get(name=pizza_name)
-    if pizza_type == "Toppings":
+    elif pizza_type == "Toppings":
         pizza = Toppings.objects.get(name=pizza_name)
-    if pizza_type == "Subs":
+    elif pizza_type == "Subs":
         pizza = Subs.objects.get(name=pizza_name)
-    if pizza_type == "Salads":
+    elif pizza_type == "Salads":
         pizza = Salads.objects.get(name=pizza_name)
-    if pizza_type == "Pasta":
+    elif pizza_type == "Pasta":
         pizza = Pasta.objects.get(name=pizza_name)
-    if pizza_type == "DinnerPlatters":
+    elif pizza_type == "DinnerPlatters":
         pizza = DinnerPlatters.objects.get(name=pizza_name)
 
     print(quantity, size, pizza_name)
