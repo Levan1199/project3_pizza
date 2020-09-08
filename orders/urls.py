@@ -9,5 +9,7 @@ urlpatterns = [
     path("logout_view", views.logout_view, name="logout"),
     path("register", views.register, name="register"),
     path("<str:pizza_type>/<str:pizza_name>/order",views.order, name="order"),
-    
+    path("cart",views.cart, name="cart"),
+    path("<str:pizza_type>/<int:pizza_pk>/remove",views.remove, name="remove"),
+    path("order", views.payment, name="payment")
 ]

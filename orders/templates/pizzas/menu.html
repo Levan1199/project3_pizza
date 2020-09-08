@@ -7,44 +7,53 @@
                 display: flex;
                 flex-direction: row;
             }
+            input{
+                margin: 5px;
+            }
         </style>
     </head>
   
     <body>
-        
-        <a href="{% url 'logout' %}">Logout</a>        
-       
-        <ul id="regular_pizza">
-        {% for pizza in regular_pizza %}        
-        <div class="dish">
-            <li>
-                {{pizza.name}} - {{pizza.small_price}} - {{pizza.large_price}}                    
-            </li>                
-            <form action="{% url 'order' pizza.pizza_type pizza.name %}" method="POST">
-                {% csrf_token %}                        
-                <select name="quantity">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>                        
-                </select>
-                <select name="size">
-                    <option value="small">Small</option>
-                    <option value="large">large</option>
-                </select>
-                <input type="submit" value="Order">
-            </form>
+        <div style="text-align: right;">
+            <h4>{{username}}</h4>            
+            <a href="{% url 'cart' %}">Your Cart</a>       
+            <br>
+            <a href="{% url 'logout' %}">Logout</a>        
         </div>
-        {% endfor %}
+        <h2 style="text-align: center;">Pizza Menu</h2>
+        <ul id="regular_pizza">
+            <h5>Regular Pizza</h5>
+            {% for pizza in regular_pizza %}        
+            <div class="dish">
+                <li>
+                    {{pizza.name}} - {{pizza.small_price}} - {{pizza.large_price}}                    
+                </li>                
+                <form action="{% url 'order' pizza.pizza_type pizza.name %}" method="POST">
+                    {% csrf_token %}                        
+                    <select name="quantity">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>                        
+                    </select>
+                    <select name="size">
+                        <option value="Small">Small</option>
+                        <option value="Large">large</option>
+                    </select>
+                    <input type="submit" value="Add to Cart">
+                </form>
+            </div>
+            {% endfor %}
         </ul>
 
         <ul id="sicilian_pizza">
+            <h5>Sicilian Pizza</h5>
             {% for pizza in sicilian_pizza %}
             <div class="dish">
                 <li>
@@ -65,63 +74,160 @@
                         <option value="10">10</option>                        
                     </select>
                     <select name="size">
-                        <option value="small">Small</option>
-                        <option value="large">large</option>
+                        <option value="Small">Small</option>
+                        <option value="Large">large</option>
                     </select>
-                    <input type="submit" value="Order">
+                    <input type="submit" value="Add to Cart">
                 </form>
             </div>
             {% endfor %}
         </ul>
 
         <ul id="toppings">
-            {% for topping in toppings %}
-                <li>
-                    {{topping.name}}
-                </li>
+            <h5>Toppings</h5>
+            {% for topping in toppings %}             
+                <div class="dish">
+                    <li>
+                        {{topping.name}}               
+                    </li>                
+                    <form action="{% url 'order' topping.pizza_type topping.name %}" method="POST">
+                        {% csrf_token %}                           
+                        <select name="quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>                        
+                        </select>            
+                        <input type="submit" value="Add to Cart">
+                    </form>
+                </div>
             {% endfor %}
         </ul>
 
         <ul id="subs">
-            {% for sub in subs %}
-                <li>
-                    {{sub.name}} - {{sub.small_price}} - {{sub.large_price}}
-                </li>
+            <h5>Subs</h5>
+            {% for sub in subs %}          
+                <div class="dish">
+                    <li>
+                        {{sub.name}} - {{sub.small_price}} - {{sub.large_price}}                    
+                    </li>                
+                    <form action="{% url 'order' sub.pizza_type sub.name %}" method="POST">
+                        {% csrf_token %}     
+                        <select name="quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>                        
+                        </select>
+                        <select name="size">
+                            <option value="Small">Small</option>
+                            <option value="Large">large</option>
+                        </select>
+                        <input type="submit" value="Add to Cart">
+                    </form>
+                </div>
             {% endfor %}
         </ul>    
 
+   
+
         <ul id="pasta">
-            {% for pas in pasta %}
-                <li>
-                    {{pas.name}} - {{pas.price}}
-                </li>
+            <h5>Pasta</h5>
+            {% for pas in pasta %}            
+                <div class="dish">
+                    <li>
+                        {{pas.name}} - {{pas.price}}
+                    </li>                
+                    <form action="{% url 'order' pas.pizza_type pas.name %}" method="POST">
+                        {% csrf_token %}           
+                        <select name="quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>                        
+                        </select>          
+                        <input type="submit" value="Add to Cart">
+                    </form>
+                </div>
             {% endfor %}
         </ul>
 
         <ul id="salads">
+            <h5>Salads</h5>
             {% for salad in salads %}
-                <li>
-                    {{salad.name}} - {{salad.price}}
-                </li>
+             
+                <div class="dish">
+                    <li>
+                        {{salad.name}} - {{salad.price}}
+                    </li>                
+                    <form action="{% url 'order' salad.pizza_type salad.name %}" method="POST">
+                        {% csrf_token %}    
+                        <select name="quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>                        
+                        </select>                 
+                        <input type="submit" value="Add to Cart">
+                    </form>
+                </div>
             {% endfor %}            
         </ul>
         
         <ul id="dinner_platters">
+            <h5>Dinner Platters</h5>
             {% for dinner_platter in dinner_platters %}
-                <li>
-                    {{dinner_platter.name}} - {{dinner_platter.small_price}} - {{dinner_platter.large_price}}
-                </li>
+                <div class="dish">
+                    <li>
+                        {{dinner_platter.name}} - {{dinner_platter.small_price}} - {{dinner_platter.large_price}}          
+                    </li>                
+                    <form action="{% url 'order' dinner_platter.pizza_type dinner_platter.name %}" method="POST">
+                        {% csrf_token %}     
+                        <select name="quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>                        
+                        </select>
+                        <select name="size">
+                            <option value="small">Small</option>
+                            <option value="large">large</option>
+                        </select>
+                        <input type="submit" value="Add to Cart">
+                    </form>
+                </div>
             {% endfor %}
         </ul>          
-        
-        <!-- <script>
-            function make_order(){
-                console.log('2323232222');  
-            }
-
-            document.querySelectorAll('.order').forEach(function(e){               
-                e.onclick = make_order();
-            });
-        </script> -->
+ 
     </body>
 </html> 
