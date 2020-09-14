@@ -74,8 +74,8 @@ class DinnerPlatters(models.Model):
 #     def __str__(self):
 #         return f"{self.pk}"
 
-class Order(models.Model):
-    pass
+# class Order(models.Model):
+#     pass
 
 
 class Cart(models.Model):
@@ -112,10 +112,10 @@ class ToppingsOrder(models.Model):
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="user_of_cart")
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="top_order")
     dish = models.ForeignKey(Toppings, on_delete=models.CASCADE, related_name="toppings")
-    quantity = models.IntegerField(default=1)
+    # quantity = models.IntegerField(default=1)
     
     def __str__(self):
-        return f"{self.cart} - {self.quantity} "
+        return f"{self.cart} "
 
 class SubsOrder(models.Model):    
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="user_of_cart")

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import RegularPizza, SicilianPizza, Subs, Salads, Toppings, DinnerPlatters, Pasta, Order, Cart
+from .models import RegularPizza, SicilianPizza, Subs, Salads, Toppings, DinnerPlatters, Pasta, Cart
 from .models import RegularPizzaOrder, SicilianPizzaOrder, SubsOrder, SaladsOrder, ToppingsOrder, DinnerPlattersOrder, PastaOrder
 # class OrderInline(admin.StackedInline):
 #     model = Order.regular_pizza.through
@@ -33,7 +33,7 @@ admin.site.register(Salads)
 admin.site.register(Toppings)
 admin.site.register(DinnerPlatters)
 admin.site.register(Pasta)
-admin.site.register(Order)
+# admin.site.register(Order)
 admin.site.register(Cart)
 admin.site.register(RegularPizzaOrder)
 admin.site.register(SicilianPizzaOrder)

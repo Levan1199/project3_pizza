@@ -1,0 +1,342 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pizza - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+  	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>Pizza<br><small>Delicous</small></a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <!-- <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+	          <li class="nav-item active"><a href="menu.html" class="nav-link">Menu</a></li>
+	       
+			  <li class="nav-item"><a href="account.html" class="nav-link">Account</a></li>
+			  <li class="nav-item"><a href="cart.html" class="nav-link">Cart</a></li> -->
+
+			  <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+	          <li class="nav-item active"><a href="{% url 'menu' %}" class="nav-link">Menu</a></li>	       
+            <li class="nav-item"><a href="{% url 'template_account' %}" class="nav-link">Account</a></li>
+            <li class="nav-item"><a href="{% url 'cart' %}" class="nav-link">Cart</a></li>
+	        </ul>
+	      </div>
+		  </div>
+	  </nav>
+    <!-- END nav -->
+
+    
+
+	<section class="ftco-section">
+		<div class="container">
+    		<div class="row justify-content-center mb-5 pb-3 mt-5 pt-5">
+			<div class="col-md-7 heading-section text-center ftco-animate">
+				<h2 class="mb-4">Our Menu</h2>
+				<p class="flip"><span class="deg1"></span><span class="deg2"></span><span class="deg3"></span></p>
+				<p class="mt-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+			</div>
+        </div>
+        <div class="row">
+        	<!-- <div class="col-md-6"> -->
+				<h5>Regular Pizza</h5>
+            	{% for pizza in regular_pizza %}        
+        		<div class="pricing-entry d-flex ftco-animate">
+        			<div class="img" style="background-image: url(static/images/pizza-1.jpg);"></div>
+        			<div class="desc pl-3">
+	        			<div class="d-flex text align-items-center">
+	        				<h3><span>{{pizza.name}}</span></h3>
+	        				<span class="price">${{pizza.small_price}}-${{pizza.large_price}}</span>
+	        			</div>
+	        			<div class="d-block">
+	        				<form action="{% url 'order' pizza.pizza_type pizza.name %}" method="POST">
+								{% csrf_token %}                        
+								<select name="quantity">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>                        
+								</select>
+								<select name="size">
+									<option value="Small">Small</option>
+									<option value="Large">large</option>
+								</select>
+								<input type="submit" value="Add to Cart">
+							</form>
+	        			</div>
+        			</div>
+				</div>
+				{% endfor %}
+
+				<h5>Sicilian Pizza</h5>
+            	{% for pizza in sicilian_pizza %}        
+        		<div class="pricing-entry d-flex ftco-animate">
+        			<div class="img" style="background-image: url(static/images/pizza-1.jpg);"></div>
+        			<div class="desc pl-3">
+	        			<div class="d-flex text align-items-center">
+	        				<h3><span>{{pizza.name}}</span></h3>
+	        				<span class="price">${{pizza.small_price}}-${{pizza.large_price}}</span>
+	        			</div>
+	        			<div class="d-block">
+	        				<form action="{% url 'order' pizza.pizza_type pizza.name %}" method="POST">
+								{% csrf_token %}                        
+								<select name="quantity">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>                        
+								</select>
+								<select name="size">
+									<option value="Small">Small</option>
+									<option value="Large">large</option>
+								</select>
+								<input type="submit" value="Add to Cart">
+							</form>
+	        			</div>
+        			</div>
+				</div>
+				{% endfor %}
+
+				<h5>Toppings Pizza</h5>
+            	{% for topping in toppings %}        
+        		<div class="pricing-entry d-flex ftco-animate">
+        			<div class="img" style="background-image: url(static/images/pizza-1.jpg);"></div>
+        			<div class="desc pl-3">
+	        			<div class="d-flex text align-items-center">
+	        				<h3><span>{{topping.name}}</span></h3>
+	        				<span class="price">$0.00</span>
+	        			</div>
+	        			<div class="d-block">
+	        				<form action="{% url 'order' topping.pizza_type topping.name %}" method="POST">
+								{% csrf_token %}                        							
+								<input type="submit" value="Add to Cart">
+							</form>
+	        			</div>
+        			</div>
+				</div>
+				{% endfor %}
+				
+				<h5>Subs</h5>
+            	{% for sub in subs %}        
+        		<div class="pricing-entry d-flex ftco-animate">
+        			<div class="img" style="background-image: url(static/images/pizza-1.jpg);"></div>
+        			<div class="desc pl-3">
+	        			<div class="d-flex text align-items-center">
+	        				<h3><span>{{sub.name}}</span></h3>
+	        				<span class="price">${{sub.small_price}}-${{sub.large_price}}</span>
+	        			</div>
+	        			<div class="d-block">
+	        				<form action="{% url 'order' sub.pizza_type sub.name %}" method="POST">
+								{% csrf_token %}                        
+								<select name="quantity">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>                        
+								</select>
+								<select name="size">
+									<option value="Small">Small</option>
+									<option value="Large">large</option>
+								</select>
+								<input type="submit" value="Add to Cart">
+							</form>
+	        			</div>
+        			</div>
+				</div>
+				{% endfor %}
+
+				<h5>Pasta</h5>
+            	{% for pas in pasta %}        
+        		<div class="pricing-entry d-flex ftco-animate">
+        			<div class="img" style="background-image: url(static/images/pizza-1.jpg);"></div>
+        			<div class="desc pl-3">
+	        			<div class="d-flex text align-items-center">
+	        				<h3><span>{{pas.name}}</span></h3>
+	        				<span class="price">${{pas.price}}</span>
+	        			</div>
+	        			<div class="d-block">
+	        				<form action="{% url 'order' pas.pizza_type pas.name %}" method="POST">
+								{% csrf_token %}                        
+								<select name="quantity">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>                        
+								</select>
+								<!-- <select name="size">
+									<option value="Small">Small</option>
+									<option value="Large">large</option>
+								</select> -->
+								<input type="submit" value="Add to Cart">
+							</form>
+	        			</div>
+        			</div>
+				</div>
+				{% endfor %}
+
+				<h5>Salad</h5>
+            	{% for salad in salads %}        
+        		<div class="pricing-entry d-flex ftco-animate">
+        			<div class="img" style="background-image: url(static/images/pizza-1.jpg);"></div>
+        			<div class="desc pl-3">
+	        			<div class="d-flex text align-items-center">
+	        				<h3><span>{{salad.name}}</span></h3>
+	        				<span class="price">${{salad.price}}</span>
+	        			</div>
+	        			<div class="d-block">
+	        				<form action="{% url 'order' salad.pizza_type salad.name %}" method="POST">
+								{% csrf_token %}                        
+								<select name="quantity">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>                        
+								</select>
+								<!-- <select name="size">
+									<option value="Small">Small</option>
+									<option value="Large">large</option>
+								</select> -->
+								<input type="submit" value="Add to Cart">
+							</form>
+	        			</div>
+        			</div>
+				</div>
+				{% endfor %}
+
+				<h5>Dinner Platters</h5>
+            	{% for dinner_platter in dinner_platters %}        
+        		<div class="pricing-entry d-flex ftco-animate">
+        			<div class="img" style="background-image: url(static/images/pizza-1.jpg);"></div>
+        			<div class="desc pl-3">
+	        			<div class="d-flex text align-items-center">
+	        				<h3><span>{{dinner_platter.name}}</span></h3>
+	        				<span class="price">${{dinner_platter.small_price}}-${{dinner_platter.large_price}}</span>
+	        			</div>
+	        			<div class="d-block">
+	        				<form action="{% url 'order' dinner_platter.pizza_type dinner_platter.name %}" method="POST">
+								{% csrf_token %}                        
+								<select name="quantity">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>                        
+								</select>
+								<select name="size">
+									<option value="Small">Small</option>
+									<option value="Large">large</option>
+								</select>
+								<input type="submit" value="Add to Cart">
+							</form>
+	        			</div>
+        			</div>
+				</div>
+				{% endfor %}							
+        </div>    	
+    </section>
+
+ 
+	<div class="container">   
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+				Copyright &copy;
+				<script>document.write(new Date().getFullYear());</script> 
+				All rights reserved | This template is made with 
+				<i class="icon-heart" aria-hidden="true"></i> by
+				<a href="https://colorlib.com" target="_blank">Colorlib</a>
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+			</div>
+		</div>
+	</div>
+    
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src= "{% static 'js/jquery.min.js' %}"></script>
+  <script src= "{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src= "{% static 'js/popper.min.js' %}"></script>
+  <script src= "{% static 'js/bootstrap.min.js' %}"></script>
+  <script src= "{% static 'js/jquery.easing.1.3.js' %}"></script>
+  <script src= "{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src= "{% static 'js/jquery.stellar.min.js' %}"></script>
+  <script src= "{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src= "{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script src= "{% static 'js/aos.js' %}"></script>
+  <script src= "{% static 'js/jquery.animateNumber.min.js' %}"></script>
+  <script src= "{% static 'js/bootstrap-datepicker.js' %}"></script>
+  <script src= "{% static 'js/jquery.timepicker.min.js' %}"></script>
+  <script src= "{% static 'js/scrollax.min.js' %}"></script>
+  <!-- <script src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src= "{% static 'js/google-map.js' %}"></script> -->
+  <script src= "{% static 'js/main.js' %}"></script>   
+    
+  </body>
+</html>
